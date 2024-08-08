@@ -40,11 +40,6 @@ resource "aws_instance" "main" {
     volume_type = "standard"
   }
   key_name = module.ssh_keys.key_pair_name
-
-  tags = merge(local.common_tags, {
-    "Name" = "${local.name_prefix}-webapp-${count.index}"
-  })
-
   # Provisioner Stuff
   connection {
     type        = "ssh"
