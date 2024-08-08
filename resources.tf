@@ -37,7 +37,10 @@ resource "aws_instance" "main" {
   ]
 
   key_name = module.ssh_keys.key_pair_name
-
+  root_block_device {
+    volume_size = 30
+    volume_type = "standard"
+  }
   tags = merge(local.common_tags, {
     "Name" = "${local.name_prefix}-webapp-${count.index}"
   })
