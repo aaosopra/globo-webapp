@@ -35,7 +35,10 @@ resource "aws_instance" "main" {
     aws_security_group.webapp_ssh_inbound_sg.id,
     aws_security_group.webapp_outbound_sg.id,
   ]
-
+  root_block_device {
+    volume_size = 30
+    volume_type = "standard"
+  }
   key_name = module.ssh_keys.key_pair_name
   root_block_device {
     volume_size = 30
